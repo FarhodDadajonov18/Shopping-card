@@ -1,20 +1,22 @@
-import React, { useContext} from 'react';
-import { ShopContext } from '../context';
-import GoodItem from './GoodItem';
+import React, { useContext } from "react";
+import { ShopContext } from "../context";
+import GoodItem from "./GoodItem";
+import Loader from "./Loader";
 
 function GoodList() {
-const { goods = [] } = useContext(ShopContext);
+  const { goods = [] } = useContext(ShopContext);
 
-if(!goods.length){
-return  <h3> Not found </h3>
-}
+  if (!goods.length) {
+    return <Loader />;
+  }
+
   return (
-   <div className="goods">
-    {goods.map(item=>(
+    <div className="goods">
+      {goods.map((item) => (
         <GoodItem key={item.id} {...item} />
-    ))}
+      ))}
     </div>
-  )
+  );
 }
 
 export default GoodList;
